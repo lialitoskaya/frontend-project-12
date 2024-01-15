@@ -1,0 +1,23 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "chat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx start-server -s ./frontend/build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lialitoskaya/frontend-project-12.git"
+  },
+  "author": "Liya Makadze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lialitoskaya/frontend-project-12/issues"
+  },
+  "homepage": "https://github.com/lialitoskaya/frontend-project-12#readme",
+  "dependencies": {
+    "@hexlet/chat-server": "^2.0.0"
+  }
+}
