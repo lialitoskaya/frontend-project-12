@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -18,7 +20,14 @@ function App() {
           Learn React
         </a>
       </header>
+      
     </div>
+    <Routes>
+        <Route element={<div><ul><li><Link to='/first'>first link</Link></li><li><Link to='/second'>second link</Link></li></ul></div>}/>
+        <Route path='/' element={<div>On click open first task</div>}/>
+        <Route path='second' element={<div>On click open second task</div>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
