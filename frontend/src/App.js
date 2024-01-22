@@ -23,8 +23,8 @@ function App() {
       
     </div>
     <Routes>
-        <Route element={<div><ul><li><Link to='/first'>first link</Link></li><li><Link to='/second'>second link</Link></li></ul></div>}/>
-        <Route path='/' element={<div>On click open first task</div>}/>
+        <Route path='/' element={<div><ul><li><Link to='/first'>first link</Link></li><li><Link to='/second'>second link</Link></li></ul></div>}/>
+        <Route path='first' element={<div>On click open first task</div>}/>
         <Route path='second' element={<div>On click open second task</div>}/>
       </Routes>
     </BrowserRouter>
