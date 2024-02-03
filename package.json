@@ -2,7 +2,6 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "chat",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx start-server -s ./frontend/build",

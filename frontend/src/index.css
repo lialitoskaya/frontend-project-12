@@ -1,13 +1,14 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+.button1 {
+    background-color: white;
+    color:#1883b1;
+    border: 2px solid #227fa7; /* Green */
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+
+
