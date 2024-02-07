@@ -1,10 +1,10 @@
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const channelsAdapter = createEntityAdapter();
 
 export const axiosChannels = async (token) => {
-  const channelsRes = await axios.get("/api/v1/channels", {
+  const channelsRes = await axios.get('/api/v1/channels', {
     headers: { Authorization: `Bearer ${token}` },
   });
   return channelsRes.data;
@@ -16,18 +16,18 @@ export const axiosRenameChannel = async (values, id, token) => {
       Authorization: `Bearer ${token}`,
     },
   });
-}
+};
 
 export const axiosAddChannel = async (values, token) => {
-  await axios.post("/api/v1/channels", values, {
+  await axios.post('/api/v1/channels', values, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-}
+};
 
 const channelsSlice = createSlice({
-  name: "channels",
+  name: 'channels',
   initialState: channelsAdapter.getInitialState(),
   reducers: {
     addChannels: channelsAdapter.addMany,
@@ -37,6 +37,10 @@ const channelsSlice = createSlice({
   },
 });
 
-export const channelsSelectors = channelsAdapter.getSelectors((state) => state.channels);
+export const channelsSelectors = channelsAdapter.getSelectors(
+  (state) => state.channels,
+);
 export default channelsSlice.reducer;
-export const { addChannels, addChannel, renameChannel, removeChannel } = channelsSlice.actions;
+export const {
+  addChannels, addChannel, renameChannel, removeChannel,
+} = channelsSlice.actions;
