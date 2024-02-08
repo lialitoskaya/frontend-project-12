@@ -27,9 +27,10 @@ import ChannelsGroup from './ChannelsGroup';
 
 
 export const ChannelsContext = createContext({});
+const socket = io();
 
 const Chat = () => {
-  const socket = io();
+  
   const dispatch = useDispatch();
   const { context } = useContext(AuthContext);
   const token = context.getItem('token');
