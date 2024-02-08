@@ -1,14 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
-import LogInForm from './LogInForm';
-import { createContext, useState } from 'react';
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import { Provider } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { Provider as RollbarProvaider, ErrorBoundary } from '@rollbar/react';
+import LogInForm from './LogInForm';
 import store from '../store.js';
 import Chat from './ChatPage.js';
-import { Navigate } from 'react-router-dom';
 import SignUpForm from './SignUpForm.js';
 import MainPage from './MainPage.js';
-import { Provider as RollbarProvaider, ErrorBoundary } from '@rollbar/react';
 
 const rollbarConfig = {
   accessToken: '1ffa02bb4b8046bb8c7e27273e60f4aa',

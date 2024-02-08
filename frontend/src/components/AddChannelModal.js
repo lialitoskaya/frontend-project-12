@@ -1,15 +1,15 @@
 import Modal from 'react-bootstrap/Modal';
-import { useContext, useEffect, useState } from 'react';
+import {
+  useContext, useEffect, useState, useRef,
+} from 'react';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { AuthContext } from './App';
 import cn from 'classnames';
-import schema from '../util/yupSchema';
-import { useRef } from 'react';
-import { axiosAddChannel } from '../slices/channelsSlice';
-import { channelsSelectors } from '../slices/channelsSlice';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { AuthContext } from './App';
+import { axiosAddChannel, channelsSelectors } from '../slices/channelsSlice';
+import schema from '../util/yupSchema';
 import filterProfanity from '../util/filterProfanity';
 
 const AddChannelModal = ({ children }) => {
@@ -46,18 +46,17 @@ const AddChannelModal = ({ children }) => {
     validateOnBlur: false,
   });
 
-  const handleClose = () => {
+  function handleClose() {
     setShow(false);
     formik.resetForm();
-  };
-
+  }
   const handleShow = () => {
     setShow(true);
   };
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal show={show} onHide={() => handleClose()} centered>
         <Modal.Header closeButton>
           <Modal.Title>{t('chatPage.channels.add')}</Modal.Title>
         </Modal.Header>

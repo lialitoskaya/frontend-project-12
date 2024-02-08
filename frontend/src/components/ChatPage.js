@@ -1,8 +1,11 @@
 import { useDispatch } from 'react-redux';
-import Messages from './Messages';
 import {
-  useContext, useEffect, useRef, useState,
+  useContext, useEffect, useState,
+  createContext,
 } from 'react';
+import { io } from 'socket.io-client';
+import { ToastContainer } from 'react-toastify';
+import Messages from './Messages';
 import { AuthContext } from './App';
 import MessageForm from './MessageForm';
 
@@ -12,7 +15,6 @@ import {
   axiosMessages,
   updateMessages,
 } from '../slices/messagesSlice';
-import { io } from 'socket.io-client';
 import {
   addChannels,
   axiosChannels,
@@ -21,14 +23,13 @@ import {
   removeChannel,
 } from '../slices/channelsSlice';
 import ChannelsGroup from './ChannelsGroup';
-import { createContext } from 'react';
-import { ToastContainer } from 'react-toastify';
 
-const socket = io();
+
 
 export const ChannelsContext = createContext({});
 
 const Chat = () => {
+  const socket = io();
   const dispatch = useDispatch();
   const { context } = useContext(AuthContext);
   const token = context.getItem('token');
@@ -45,13 +46,13 @@ const Chat = () => {
 
       setActiveChannel(channels[0]);
       setState(true);
-
-      socket.on('removeChannel', async ({ id }) => {
-        const currentMessages = await axiosMessages(token);
-        dispatch(removeChannel(id));
-        dispatch(updateMessages(currentMessages));
-        setActiveChannel(channels[0]);
-      });
+      // console.log(channels);
+      // socket.on('removeChannel', async ({ id }) => {
+      //   const currentMessages = await axiosMessages(token);
+      //   dispatch(removeChannel(id));
+      //   dispatch(updateMessages(currentMessages));
+      //   activeChannel.id === id && setActiveChannel(channels[0]);
+      // });
     };
 
     f();
@@ -67,7 +68,7 @@ const Chat = () => {
     socket.on('renameChannel', ({ id, name }) => {
       dispatch(renameChannel({ id, changes: { name } }));
     });
-  }, []);
+  });
 
   return (
     fulfilled && (

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { AuthContext } from './App';
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { AuthContext } from './App';
 
 const MainPage = () => {
   const { t } = useTranslation();

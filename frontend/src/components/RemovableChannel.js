@@ -1,20 +1,20 @@
 import { useSelector } from 'react-redux';
 import { ChannelsContext } from './ChatPage';
 import { ButtonGroup, DropdownButton, Dropdown } from 'react-bootstrap';
-import Channel from './Channel';
 import Modal from 'react-bootstrap/Modal';
 import cn from 'classnames';
 import { useFormik } from 'formik';
-import schema from '../util/yupSchema';
-import { AuthContext } from './App';
-import RemoveModal from './RemoveModal';
 import {
   useEffect, useRef, useContext, useState,
 } from 'react';
-import { axiosRenameChannel, channelsSelectors } from '../slices/channelsSlice';
 import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import { axiosRenameChannel, channelsSelectors } from '../slices/channelsSlice';
+import RemoveModal from './RemoveModal';
+import { AuthContext } from './App';
+import schema from '../util/yupSchema';
+import Channel from './Channel';
 
 const RemovableChannel = ({ id, name }) => {
   const { t } = useTranslation();

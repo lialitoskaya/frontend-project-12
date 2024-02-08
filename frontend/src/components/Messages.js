@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useContext } from 'react';
-import { ChannelsContext } from './ChatPage';
 import { useTranslation } from 'react-i18next';
+import { ChannelsContext } from './ChatPage';
 
 const Messages = () => {
   const { activeChannel } = useContext(ChannelsContext);

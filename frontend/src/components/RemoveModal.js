@@ -1,9 +1,9 @@
 import { Modal } from 'react-bootstrap';
 import axios from 'axios';
 import { useContext } from 'react';
-import { AuthContext } from './App';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { AuthContext } from './App';
 
 const RemoveModal = ({ showModalRemove, setShowModalRemove, id }) => {
   const { t } = useTranslation();

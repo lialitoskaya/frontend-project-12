@@ -3,8 +3,8 @@ import { useFormik } from 'formik';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { AuthContext } from './App';
 import cn from 'classnames';
+import { AuthContext } from './App';
 
 const axiosLogIn = async ({ username, password }) => {
   const res = await axios.post('/api/v1/login', { username, password });

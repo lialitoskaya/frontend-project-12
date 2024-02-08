@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
-import { AuthContext } from './App';
 import cn from 'classnames';
-import { ChannelsContext } from './ChatPage';
 import { useTranslation } from 'react-i18next';
+import { AuthContext } from './App';
+import { ChannelsContext } from './ChatPage';
 import filterProfanity from '../util/filterProfanity';
 
 const MessageForm = () => {

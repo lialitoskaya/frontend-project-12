@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useEffect, useRef } from 'react';
-import { useContext } from 'react';
-import { AuthContext } from './App';
+import { useEffect, useRef, useContext } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { authorizationSchema } from '../util/yupSchema';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
+import { authorizationSchema } from '../util/yupSchema';
+import { AuthContext } from './App';
 
 const SignUpForm = () => {
   const { t } = useTranslation();
