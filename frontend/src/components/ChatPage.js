@@ -36,7 +36,7 @@ const Chat = () => {
   const channels = useSelector(channelsSelectors.selectAll);
 
   useEffect(() => {
-    const f = async () => {
+    const axiosData = async () => {
       const channels = await axiosChannels(token);
       const messages = await axiosMessages(token);
 
@@ -47,15 +47,13 @@ const Chat = () => {
       setState(true);
     };
 
-    f();
+    axiosData();
   }, []);
 
   if (fulfilled) {
     socket.on("removeChannel", async ({ id }) => {
       activeChannel.id === id && setActiveChannel(channels[0]);
-      const currentMessages = await axiosMessages(token);
       dispatch(removeChannel(id));
-      dispatch(updateMessages(currentMessages));
     });
 
     socket.on("newMessage", (message) => {
