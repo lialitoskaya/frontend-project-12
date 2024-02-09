@@ -7,7 +7,7 @@ const Channel = ({ id, name }) => {
 
   const classNames = (id) => cn(
     'w-100 rounded-0 text-start btn border-0 shadow-sm font-monospace text-truncate',
-    `btn-${activeChannel.id === id && 'secondary'}`,
+    {'btn-secondary': activeChannel.id === id}
   );
 
   return (
