@@ -14,7 +14,7 @@ const MainPage = () => {
 
   return (
     <div className="d-flex flex-column h-100 ">
-      <nav className="navbar p-3 shadow navbar-light bg-light mb-5">
+      <nav className="navbar p-3 shadow navbar-light bg-light">
         <a className="navbar-brand font-monospace" href="/">
           {t('mainPage.header')}
         </a>
