@@ -11,7 +11,7 @@ import MainPage from './MainPage.js';
 
 const rollbarConfig = {
   accessToken: '1ffa02bb4b8046bb8c7e27273e60f4aa',
-  environment: 'development',
+  environment: 'production',
 };
 
 export const AuthContext = createContext({});
