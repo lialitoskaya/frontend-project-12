@@ -16,6 +16,7 @@ const RemoveModal = ({ showModalRemove, setShowModalRemove, id }) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      setShowModalRemove(false);
       toast(t('toast.channelRemoved'));
     } catch (e) {
       toast(t('axiosError'));
