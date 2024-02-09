@@ -6,8 +6,10 @@ li {
     color:#1883b1;
     border: 2px solid #227fa7; /* Green */
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 1.7vh;
     font-weight: bold;
+    display: block;
+    padding-bottom: 1%;
 }
 .spinner:last-child {
     color: #1297e5
