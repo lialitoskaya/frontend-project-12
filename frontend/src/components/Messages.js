@@ -19,7 +19,7 @@ const Messages = () => {
         <p>{t('chatPage.messages.messagesCount', { count: activeMessages.length })}</p>
       </div>
       {messages.length > 0 && (
-      <div className="overflow-y-scroll">
+      <div className="overflow-y-scroll text-break">
         <ul className="pt-1">
           {activeMessages.map(({ id, username, body }) => (
             <div id={id} key={id} className="font-monospace">
