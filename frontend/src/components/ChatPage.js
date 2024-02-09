@@ -1,41 +1,39 @@
-import { useDispatch } from 'react-redux';
-import {
-  useContext, useEffect, useState,
-  createContext,
-} from 'react';
-import { io } from 'socket.io-client';
-import { ToastContainer } from 'react-toastify';
-import Messages from './Messages';
-import { AuthContext } from './App';
-import MessageForm from './MessageForm';
-
+import { useDispatch } from "react-redux";
+import { useContext, useEffect, useState, createContext } from "react";
+import { io } from "socket.io-client";
+import { ToastContainer } from "react-toastify";
+import Messages from "./Messages";
+import { AuthContext } from "./App";
+import MessageForm from "./MessageForm";
 import {
   addMessages,
   addMessage,
   axiosMessages,
   updateMessages,
-} from '../slices/messagesSlice';
+} from "../slices/messagesSlice";
 import {
   addChannels,
   axiosChannels,
   addChannel,
   renameChannel,
   removeChannel,
-} from '../slices/channelsSlice';
-import ChannelsGroup from './ChannelsGroup';
-
+} from "../slices/channelsSlice";
+import ChannelsGroup from "./ChannelsGroup";
+import { channelsSelectors } from "../slices/channelsSlice";
+import { useSelector } from "react-redux";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 export const ChannelsContext = createContext({});
 const socket = io();
 
 const Chat = () => {
-  
   const dispatch = useDispatch();
   const { context } = useContext(AuthContext);
-  const token = context.getItem('token');
+  const token = context.getItem("token");
   const [activeChannel, setActiveChannel] = useState(null);
   const [fulfilled, setState] = useState(false);
+  const channels = useSelector(channelsSelectors.selectAll);
 
   useEffect(() => {
     const f = async () => {
@@ -47,48 +45,54 @@ const Chat = () => {
 
       setActiveChannel(channels[0]);
       setState(true);
-      // console.log(channels);
-      // socket.on('removeChannel', async ({ id }) => {
-      //   const currentMessages = await axiosMessages(token);
-      //   dispatch(removeChannel(id));
-      //   dispatch(updateMessages(currentMessages));
-      //   activeChannel.id === id && setActiveChannel(channels[0]);
-      // });
     };
 
     f();
+  }, []);
 
-    socket.on('newMessage', (message) => {
+  if (fulfilled) {
+    socket.on("removeChannel", async ({ id }) => {
+      activeChannel.id === id && setActiveChannel(channels[0]);
+      const currentMessages = await axiosMessages(token);
+      dispatch(removeChannel(id));
+      dispatch(updateMessages(currentMessages));
+    });
+
+    socket.on("newMessage", (message) => {
       dispatch(addMessage(message));
     });
 
-    socket.on('newChannel', (channel) => {
+    socket.on("newChannel", (channel) => {
       dispatch(addChannel(channel));
     });
 
-    socket.on('renameChannel', ({ id, name }) => {
+    socket.on("renameChannel", ({ id, name }) => {
       dispatch(renameChannel({ id, changes: { name } }));
     });
-  });
+  }
 
-  return (
-    fulfilled && (
-      <ChannelsContext.Provider value={{ setActiveChannel, activeChannel }}>
-        <div className="container h-100 my-3 overflow-hidden shadow">
-          <div className="row flex-md-row h-100">
-            <ChannelsGroup>
-              <div className="col d-flex flex-column  h-100 p-0">
-                <Messages />
-                <div className="mt-auto w-100">
-                  <MessageForm />
-                </div>
+
+  return fulfilled ? (
+    <ChannelsContext.Provider value={{ setActiveChannel, activeChannel }}>
+      <div className="container h-100 my-3 overflow-hidden shadow">
+        <div className="row flex-md-row h-100">
+          <ChannelsGroup>
+            <div className="col d-flex flex-column  h-100 p-0">
+              <Messages />
+              <div className="mt-auto w-100">
+                <MessageForm />
               </div>
-            </ChannelsGroup>
-          </div>
+            </div>
+          </ChannelsGroup>
         </div>
-        <ToastContainer />
-      </ChannelsContext.Provider>
-    )
+      </div>
+      <ToastContainer />
+    </ChannelsContext.Provider>
+  ) : (
+    <div className="spinner m-auto text-center">
+      <ClipLoader color='#1297e5' size={120} cssOverride={{display: "block"}} className="mb-3 mx-auto" />
+      <span>Загружаем каналы...</span>
+    </div>
   );
 };
 
