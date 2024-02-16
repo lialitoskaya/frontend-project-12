@@ -71,6 +71,7 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             className={classNames('password')}
             id="password"
+            type="password"
             placeholder="Пароль"
             onChange={formik.handleChange}
             value={formik.values.password}
@@ -85,6 +86,7 @@ const SignUpForm = () => {
             onBlur={formik.handleBlur}
             className={classNames('confirmPassword')}
             id="confirmPassword"
+            type="password"
             placeholder="Подтвердите пароль"
             onChange={formik.handleChange}
             value={formik.values.confirmPassword}
