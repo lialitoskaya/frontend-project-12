@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { AuthContext } from './App';
 import { axiosAddChannel, channelsSelectors } from '../slices/channelsSlice';
-import schema from '../util/yupSchema';
+import channelNameSchema from '../util/yupSchema';
 import filterProfanity from '../util/filterProfanity';
 
 const AddChannelModal = ({ children }) => {
@@ -30,7 +30,7 @@ const AddChannelModal = ({ children }) => {
 
   const formik = useFormik({
     initialValues: { name: '' },
-    validationSchema: schema(channelsNames),
+    validationSchema: channelNameSchema(channelsNames),
     onSubmit: async (values) => {
       try {
         const filtredVal = filterProfanity.clean(values.name);
